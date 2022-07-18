@@ -1,0 +1,98 @@
+{
+  "name": "react-qr-rounded",
+  "version": "1.0.0",
+  "description": "React component for QR code generation with rounded corners and cutout option",
+  "keywords": [
+    "react",
+    "react-component",
+    "qr",
+    "qr-code",
+    "qr-rounded",
+    "qrcode"
+  ],
+  "main": "./lib/index.js",
+  "module": "./lib/esm/index.js",
+  "types": "./lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "npm run build:code && npm run build:examples",
+    "build:code": "tsup src/index.tsx -d lib --format esm,cjs --dts --legacy-output --target=es2017 --platform=browser",
+    "build:examples": "tsup examples/demo.tsx -d examples --format iife --env.NODE_ENV production --minify --target=es2017 --legacy-output",
+    "lint": "eslint .",
+    "pretty": "prettier --write '{*,.*}.{mjs,js,json}' '**/*.{js,json}'",
+    "prepack": "rm -rf lib && npm run build && npm run typecheck",
+    "prepublish-docs": "rm -rf lib && npm run build",
+    "publish-docs": "gh-pages --dist=examples --src='{index.html,iife/demo.js}'",
+    "typecheck": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iofjuupasli/react-qr-rounded.git"
+  },
+  "author": "Valery Tretyak <valery@tretyak.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iofjuupasli/react-qr-rounded/issues"
+  },
+  "homepage": "https://github.com/iofjuupasli/react-qr-rounded#readme",
+  "dependencies": {
+    "qrcode-generator": "^1.4.4"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.9",
+    "@babel/preset-env": "^7.18.9",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.18.6",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.30.6",
+    "@typescript-eslint/parser": "^5.30.6",
+    "eslint": "^8.20.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "gh-pages": "^4.0.0",
+    "prettier": "^2.7.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tsup": "^6.1.3",
+    "typescript": "^4.7.4"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react",
+      "@babel/preset-typescript"
+    ]
+  },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "env": {
+      "es6": true,
+      "node": true,
+      "browser": true
+    },
+    "plugins": [
+      "react", "@typescript-eslint"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:react-hooks/recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:prettier/recommended",
+      "prettier"
+    ],
+    "settings": {
+      "react": {
+        "version": "16.2.0"
+      }
+    }
+  }
+}
